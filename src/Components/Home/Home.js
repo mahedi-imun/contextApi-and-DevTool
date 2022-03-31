@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import useCart from '../useHooks/useCart';
 import useProducts from '../useHooks/useProducts';
 import './Home.css'
+export const Hello = createContext('hi')
 const Home = () => {
     const [products, setProduct] = useProducts()
     const [cart, setCart] = useCart()
@@ -32,7 +33,9 @@ const Home = () => {
                     ></Product>)
                 }
             </div>
-            <div>
+            {
+                <Hello.Provider value='how are you'>
+                    <div>
                 <Cart
                     products={cart}
                     key={cart}
@@ -40,6 +43,8 @@ const Home = () => {
                 >
                 </Cart>
             </div>
+                </Hello.Provider>
+            }
         </div>
     );
 };
